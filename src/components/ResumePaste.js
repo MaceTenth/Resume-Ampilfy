@@ -36,9 +36,11 @@ const ResumePaste = () => {
         onChange={handleTextChange}
       ></textarea>
       <div className="button resume__options">
-        <button className="send__button">send</button>
-        {/* <p>
+        <a href="/results" role="button" className="btn btn-default">
+          <button className="send__button">send</button>
+          {/* <p>
           compare yuor resume to a job description{"-> "} */}
+        </a>
         <button className="compare__button">compare</button>
         {/* </p> */}
       </div>
