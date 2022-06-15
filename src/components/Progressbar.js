@@ -9,8 +9,19 @@ export default function ProgressBar() {
 
   useEffect(() => {
     setPercentage(newPrecentage);
-    console.log("hi");
   }, []);
+
+  useEffect(() => {
+    if (percentage < 100) {
+      const interval = setInterval(() => {
+        setPercentage((prevPercentage) => prevPercentage + 5);
+      }, 2000);
+
+      return () => clearInterval(interval);
+    } else {
+      setPercentage(100);
+    }
+  }, [percentage]);
 
   const text = (
     <h4 className="text-left">
