@@ -40,6 +40,11 @@ kula_white: #eef2ee
   font-size: 5em;
 }
 
+.kula_font {
+  color: #33048b;
+  font-size: 2em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

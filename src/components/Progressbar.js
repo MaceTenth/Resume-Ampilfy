@@ -1,10 +1,13 @@
-import { React, useEffect, useState } from "react";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { React, Fragment, useEffect, useState } from "react";
+import {
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ResumePaste from "./ResumePaste";
 
 export default function ProgressBar() {
-  const newPrecentage = 66;
+  const newPrecentage = 91;
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
@@ -42,18 +45,35 @@ export default function ProgressBar() {
         <h1 className="kula_title my-5">Resume Score</h1>
         <div className="row d-flex justify-content-center align-content-center">
           <div className="col-8 ms-5">
-            <CircularProgressbar
+            <CircularProgressbarWithChildren
               className=""
               value={percentage}
+              maxValue={100}
               strokeWidth={13}
-              text={`${percentage}%`}
+              text={percentage < 100 ? `${percentage}%` : ""}
               styles={buildStyles({
                 pathTransitionDuration: 2,
                 pathColor: "#73dfef",
                 textColor: " #33048b",
                 trailColor: "#d6d6d6",
               })}
-            />
+            >
+              {percentage === 100 ? (
+                <Fragment>
+                  <img
+                    src="https://cdn.iconscout.com/icon/free/png-256/winner-trophy-cup-prize-award-best-first-achievement-29309.png"
+                    alt="you're_a_winner"
+                  />
+                  <div className="kula_font">
+                    <strong>{percentage}%</strong>
+                    <p>Good job! </p>
+                    <p>Your resume is excellent!</p>
+                  </div>
+                </Fragment>
+              ) : (
+                ""
+              )}
+            </CircularProgressbarWithChildren>
           </div>
         </div>
 
