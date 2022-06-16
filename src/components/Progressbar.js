@@ -1,9 +1,7 @@
-import { React, Fragment, useEffect, useState } from "react";
-import {
-  buildStyles,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
+import { React, useEffect, useState } from "react";
+import { CircleProgress } from "react-gradient-progress";
 import "react-circular-progressbar/dist/styles.css";
+
 import ResumePaste from "./ResumePaste";
 
 export default function ProgressBar() {
@@ -11,17 +9,20 @@ export default function ProgressBar() {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
-    setPercentage(newPrecentage);
-  }, []);
+    setTimeout(() => {
+      if (percentage < newPrecentage) {
+        setPercentage(percentage + 1);
+      }
+    }, 50);
+  }, [percentage]);
 
   useEffect(() => {
-    if (percentage < 100) {
+    if (percentage >= newPrecentage && percentage < 100) {
       const interval = setInterval(() => {
-        setPercentage((prevPercentage) => prevPercentage + 5);
-      }, 2000);
-
+        setPercentage((prevPercentage) => prevPercentage + 1);
+      }, 100);
       return () => clearInterval(interval);
-    } else {
+    } else if (percentage === 100) {
       setPercentage(100);
     }
   }, [percentage]);
@@ -44,39 +45,30 @@ export default function ProgressBar() {
       <section className="col-6 ">
         <h1 className="kula_title my-5">Resume Score</h1>
         <div className="row d-flex justify-content-center align-content-center">
-          <div className="col-8 ms-5">
-            <CircularProgressbarWithChildren
-              className=""
-              value={percentage}
-              maxValue={100}
-              strokeWidth={13}
-              text={percentage < 100 ? `${percentage}%` : ""}
-              styles={buildStyles({
-                pathTransitionDuration: 2,
-                pathColor: "#73dfef",
-                textColor: " #33048b",
-                trailColor: "#d6d6d6",
-              })}
-            >
-              {percentage === 100 ? (
-                <Fragment>
-                  <img
-                    src="https://cdn.iconscout.com/icon/free/png-256/winner-trophy-cup-prize-award-best-first-achievement-29309.png"
-                    alt="you're_a_winner"
-                  />
-                  <div className="kula_font">
-                    <strong>{percentage}%</strong>
-                    <p>Good job! </p>
-                    <p>Your resume is excellent!</p>
-                  </div>
-                </Fragment>
-              ) : (
-                ""
-              )}
-            </CircularProgressbarWithChildren>
+          <div className="col-6 ms-5">
+            <CircleProgress
+              percentage={percentage}
+              width={500}
+              strokeWidth={30}
+              primaryColor={["#33048b", "#73dfef"]}
+              secondaryColor="#d6d6d6"
+              fontSize={percentage < 100 ? 100 : 0}
+              fontColor={"#73dfef"}
+            />
+            {percentage === 100 ? (
+              <section className="winner_position">
+                <img
+                  src="https://cdn.iconscout.com/icon/free/png-256/winner-trophy-cup-prize-award-best-first-achievement-29309.png"
+                  alt="you're_a_winner"
+                />
+                <h2 className="kula_font">Good job! </h2>
+                <h2 className="kula_font">Your resume is excellent!</h2>
+              </section>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-
         <div className="row m-5 col-11 m-1">{text}</div>
       </section>
 
