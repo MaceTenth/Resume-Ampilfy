@@ -1,3 +1,11 @@
+/* 
+colors:
+kula_purple: #33048b 
+kula_lite_purple: #583792 
+kula_blue: #73dfef
+kula_white: #FFFFFF
+*/
+
 .App {
   text-align: center;
 }
@@ -26,6 +34,24 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.kula_title {
+  color: #33048b;
+  font-size: 5em;
+}
+
+.kula_font {
+  color: #73dfef;
+  font-size: 3em;
+  margin-top: -40;
+  margin-bottom: 40;
+}
+
+.winner_position {
+  position: absolute;
+  left: 250px;
+  top: 330px;
 }
 
 @keyframes App-logo-spin {
