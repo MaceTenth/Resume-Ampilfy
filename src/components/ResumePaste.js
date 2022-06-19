@@ -6,6 +6,11 @@ import axios from "axios";
 const ResumePaste = () => {
   const [content, setContent] = useState("");
 
+  function handleSend() {
+    let resumeSend = JSON.stringify({ text: content });
+    console.log(resumeSend);
+  }
+
   async function handleChange(event) {
     const file = event.target.files[0];
 
@@ -43,28 +48,12 @@ const ResumePaste = () => {
           className="resumePaste__button trash"
           onClick={handleTrashClick}
         />
-        <FaUpload htmlFor="inputFile" className="resumePaste__button file" />
+
+        <label htmlFor="inputFile" className="custom-file-upload">
+          <FaUpload className="resumePaste__button file" />
+        </label>
         <input type="file" accept="*" onChange={handleChange} id="inputFile" />
       </div>
-
-      {/* <label htmlFor="contained-button-file">
-        <Button
-          variant="contained"
-          color="primary"
-          component="span"
-          size="small"
-        >
-          Upload Image
-        </Button>
-      </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-        {...register("image", { required: true })}
-      /> */}
 
       <textarea
         className="resume__text"
@@ -72,7 +61,9 @@ const ResumePaste = () => {
         defaultValue={content}
       ></textarea>
       <div className="button resume__options">
-        <button className="send__button">send</button>
+        <button className="send__button" onClick={handleSend}>
+          send
+        </button>
         {/* <p>
           compare yuor resume to a job description{"-> "} */}
         <button className="compare__button">compare</button>
