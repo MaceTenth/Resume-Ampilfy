@@ -22,10 +22,12 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^5.3.3"
+    "react-router-dom": "^5.3.3",
+    "react-spinners-kit": "^1.9.1"
   },
   "browserslist": [
     "last 2 Chrome versions"
