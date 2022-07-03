@@ -13,7 +13,6 @@ const ResumePaste = () => {
 
   async function handleChange(event) {
     const file = event.target.files[0];
-
     const formData = new FormData();
     formData.append("pdfFile", file);
 

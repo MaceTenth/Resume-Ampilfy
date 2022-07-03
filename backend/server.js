@@ -2,8 +2,9 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const pdfParse = require("pdf-parse");
 const cors = require("cors");
-const path = require("path");
-const parser = require("word-text-parser");
+
+const WordExtractor = require("word-extractor");
+const extractor = new WordExtractor();
 
 const app = express();
 
@@ -30,18 +31,11 @@ app.post("/extract-text", (req, res) => {
       res.send(result.text);
     });
   } else {
-    var absPath = req.files.pdfFile;
-    parser(absPath, function (resultList) {
-      console.log(resultList.text);
-    });
+    const extracted = extractor.extract(req.files.pdfFile.data);
 
-    // parser(req.files.pdfFile)
-    //   .then((result) => {
-    //     console.log(req.files.pdfFile);
-    //     res.send(result);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    extracted.then((doc) => {
+      res.send(doc.getBody());
+      console.log(doc.getBody());
+    });
   }
 });
