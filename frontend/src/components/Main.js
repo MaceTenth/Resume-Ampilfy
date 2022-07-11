@@ -9,6 +9,7 @@ const Main = () => {
 
   function closePopup() {
     setIsPopupOpen(false);
+    setText("");
   }
 
   function updateMessage(message) {

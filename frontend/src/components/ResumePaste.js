@@ -25,9 +25,10 @@ const ResumePaste = (props) => {
         })
         .catch((error) => {
           props.updateMessage(error.response.data.message);
+          setContent("");
         });
     }
-
+    document.getElementById("inputFile").value = "";
     fetch();
   }
 
