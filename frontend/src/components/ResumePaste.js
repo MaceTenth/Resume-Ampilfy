@@ -3,7 +3,7 @@ import { FaCopy, FaTrash, FaUpload } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 
-const ResumePaste = () => {
+const ResumePaste = (props) => {
   const [content, setContent] = useState("");
 
   function handleSend() {
@@ -14,13 +14,18 @@ const ResumePaste = () => {
   async function handleChange(event) {
     const file = event.target.files[0];
     const formData = new FormData();
-    formData.append("pdfFile", file);
+    formData.append("file", file);
 
     async function fetch() {
-      const result = await axios
+      await axios
         .post("http://localhost:4000/extract-text", formData)
-        .then((res) => res);
-      setContent(result.data.trim());
+        .then((res) => {
+          setContent(res.data.trim());
+          props.updateMessage("upload success");
+        })
+        .catch((error) => {
+          props.updateMessage(error.response.data.message);
+        });
     }
 
     fetch();
