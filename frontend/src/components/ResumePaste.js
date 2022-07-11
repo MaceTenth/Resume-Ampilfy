@@ -74,10 +74,7 @@ const ResumePaste = (props) => {
         <button className="send__button" onClick={handleSend}>
           send
         </button>
-        {/* <p>
-          compare yuor resume to a job description{"-> "} */}
         <button className="compare__button">compare</button>
-        {/* </p> */}
       </div>
     </div>
   );
