@@ -1,14 +1,16 @@
 /* eslint-disable no-useless-escape */
 import { FaCopy, FaTrash, FaUpload } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const ResumePaste = (props) => {
   const [content, setContent] = useState("");
+  // const history = useHistory();
 
   function handleSend() {
-    let resumeSend = JSON.stringify({ text: content });
-    console.log(resumeSend);
+    props.handleSend(content);
   }
 
   async function handleChange(event) {
@@ -68,14 +70,18 @@ const ResumePaste = (props) => {
       <textarea
         className="resume__text"
         placeholder="Paste your resume here_ _"
-        defaultValue={content}
+        defaultValue={content || props.result}
       ></textarea>
-      <div className="button resume__options">
-        <button className="send__button" onClick={handleSend}>
-          send
-        </button>
-        <button className="compare__button">compare</button>
-      </div>
+      {content && (
+        <div className="button resume__options">
+          <button className="send__button" onClick={handleSend}>
+            <Link className="nav__item" to="/result">
+              Check
+            </Link>
+          </button>
+          <button className="compare__button">compare</button>
+        </div>
+      )}
     </div>
   );
 };

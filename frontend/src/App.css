@@ -33,7 +33,7 @@
   display: flex;
   width: 50%;
   justify-content: center;
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
 }
 
 .nav__item {
@@ -291,4 +291,26 @@ input[type="file"] {
   visibility: visible;
   opacity: 1;
   transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.kula_title {
+  color: #33048b;
+  font-size: 5em;
+}
+
+.kula_font {
+  color: #73dfef;
+  font-size: 3em;
+  margin-top: -40;
+  margin-bottom: 40;
+}
+
+.winner_position {
+  left: 250px;
+  top: 330px;
+}
+
+.progress-container {
+  background-color: cadetblue;
+  width: 100%;
 }

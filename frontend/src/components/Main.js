@@ -3,7 +3,7 @@ import About from "./About";
 import ResumePaste from "./ResumePaste";
 import PopupMessage from "./PopupMessage";
 
-const Main = () => {
+const Main = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [text, setText] = useState("");
 
@@ -38,7 +38,11 @@ const Main = () => {
   return (
     <div className="container">
       <About />
-      <ResumePaste updateMessage={updateMessage} />
+      <ResumePaste
+        updateMessage={updateMessage}
+        handleSend={props.handleSend}
+      />
+
       <PopupMessage
         isOpen={isPopupOpen}
         onClose={closePopup}
