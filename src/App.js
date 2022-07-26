@@ -1,32 +1,41 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import {render} from "react-dom";
+import "./style/index.css";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/Navbar";
+import About from "./components/About";
 import ResumePaste from "./components/ResumePaste";
-import { render } from "react-dom";
-import "./App.css";
+import HowDoesItWork from "./components/HowDoesItWork";
+import Contact from "./components/Contact";
+import initializePlugins from "./plugins";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Resume Amplify</h1>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <div className="container">
-              <About />
-              <ResumePaste />
-            </div>
-          </Route>
-          <Route path="/How does it work?" />
-          <Route path="/Contact">
-            <Contact />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
-  );
+    initializePlugins()
+
+    return (
+        <div className="App">
+            <h1>Resume Amplify</h1>
+            <Navbar/>
+            <Switch>
+                <Route path="/" exact>
+                    <div className="container">
+                        <About/>
+                        <ResumePaste/>
+                    </div>
+                </Route>
+                <Route path="/how-does-it-work">
+                    <HowDoesItWork/>
+                </Route>
+                <Route path="/Contact">
+                    <Contact/>
+                </Route>
+            </Switch>
+        </div>
+    )
 }
 
-render(<App />, document.getElementById("root"));
+render(
+    <Router>
+        <App/>
+    </Router>,
+    document.getElementById("root")
+)
