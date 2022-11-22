@@ -27,8 +27,8 @@ You can choose several options to improve your resume:
 - word-extractor
 - error handling
 
-run backend - node server.js / nodemon server.js
-run frontend - npm run dev
+## run backend - node server.js / nodemon server.js
+## run frontend - npm run dev
 
 - GIT URL: [GIT URL](https://github.com/MaceTenth/Resume-Ampilfy.git)
 
